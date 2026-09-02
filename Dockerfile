@@ -5,6 +5,7 @@ WORKDIR /app
 RUN apk add --no-cache python3 make g++ git openssl
 
 COPY package.json package-lock.json* ./
+COPY tsconfig.base.json ./
 COPY apps apps
 COPY services services
 COPY packages packages
