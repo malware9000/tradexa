@@ -1,0 +1,22 @@
+# 20 things to tell Claude to fix on your vibecoded website
+
+1. ❌ horizontal scroll
+2. find broken links
+3. add mobile menu
+4. add favicon
+5. fix page titles
+6. add meta desc
+7. fix footer links
+8. custom 404 page
+9. copyright year
+10. compress images
+11. fix broken buttons
+12. success messages
+13. error messages
+14. ❌ placeholder text
+15. ❌ unused nav
+16. fix mobile overflow
+17. clickable logo
+18. clickable number
+19. clickable email
+20. mobile optimise!

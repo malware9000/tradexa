@@ -1,0 +1,27 @@
+{
+  "name": "tradexa",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Tradexa - investment/trading platform monorepo",
+  "workspaces": [
+    "apps/*",
+    "services/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "dev:api": "npm run start:dev --workspace services/api",
+    "dev:web": "npm run dev --workspace apps/web",
+    "dev:admin": "npm run dev --workspace apps/admin",
+    "dev:worker": "npm run start:dev --workspace services/worker",
+    "db:generate": "npm run generate --workspace packages/database",
+    "db:migrate": "npm run migrate --workspace packages/database",
+    "db:push": "npm run push --workspace packages/database",
+    "db:studio": "npm run studio --workspace packages/database",
+    "lint": "npm run lint --workspaces --if-present",
+    "typecheck": "npm run typecheck --workspaces --if-present"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

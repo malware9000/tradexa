@@ -1,0 +1,22 @@
+{
+  "name": "@tradexa/worker",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "start:dev": "ts-node src/main.ts",
+    "build": "tsc -p tsconfig.json",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@tradexa/database": "*",
+    "@tradexa/shared": "*",
+    "bullmq": "^5.12.0",
+    "dotenv": "^16.4.0"
+  },
+  "devDependencies": {
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0",
+    "@types/node": "^20.14.0"
+  }
+}

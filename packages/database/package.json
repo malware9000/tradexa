@@ -1,0 +1,29 @@
+{
+  "name": "@tradexa/database",
+  "version": "0.1.0",
+  "private": true,
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "scripts": {
+    "generate": "prisma generate",
+    "migrate": "prisma migrate dev",
+    "push": "prisma db push",
+    "studio": "prisma studio",
+    "deploy": "prisma migrate deploy",
+    "seed": "ts-node --transpile-only prisma/seed.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0",
+    "@tradexa/shared": "*",
+    "argon2": "^0.41.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.22.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.0"
+  },
+  "prisma": {
+    "schema": "prisma/schema.prisma"
+  }
+}
