@@ -16,6 +16,12 @@ RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy?sslmode=require"
 # Generate Prisma client explicitly (schema needs DATABASE_URL even for generate)
 RUN npm run generate --workspace packages/database
 
+# Build workspace packages first (compile src/*.ts -> dist/*.js for runtime)
+RUN npm run build --workspace packages/types && \
+    npm run build --workspace packages/shared && \
+    npm run build --workspace packages/validation && \
+    npm run build --workspace packages/database
+
 # Build the API (compiles services/api -> dist)
 RUN npm run build --workspace services/api
 
