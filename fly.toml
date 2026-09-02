@@ -1,0 +1,18 @@
+app = "tradexa-api"
+
+[build]
+  dockerfile = "Dockerfile"
+
+[env]
+  NODE_ENV = "production"
+  API_PREFIX = "api/v1"
+
+[http_service]
+  internal_port = 3000
+  force_https = true
+  auto_stop_machines = "stop"
+
+  [http_service.checks]
+    [http_service.checks.health]
+      method = "GET"
+      path = "/api/v1/health"
