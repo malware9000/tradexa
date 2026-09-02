@@ -2,18 +2,18 @@
 FROM node:20-alpine AS builder
 WORKDIR /app
 
-RUN apk add --no-cache python3 make g++ git openssl && \
-    npm install -g npm@10
+RUN apk add --no-cache python3 make g++ git openssl
 
 COPY package.json package-lock.json* ./
 COPY apps apps
 COPY services services
 COPY packages packages
 
-# Install all workspace deps (postinstall of @prisma/client runs prisma generate)
-RUN npm install
+# Install all workspace deps
+# Prisma generate runs as part of @prisma/client postinstall
+RUN DATABASE_URL="postgresql://dummy:dummy@localhost:5432/dummy?sslmode=require" npm install
 
-# Generate the Prisma client explicitly (relative to the database package)
+# Generate Prisma client explicitly (schema needs DATABASE_URL even for generate)
 RUN npm run generate --workspace packages/database
 
 # Build the API (compiles services/api -> dist)
@@ -26,15 +26,13 @@ ENV NODE_ENV=production
 
 RUN apk add --no-cache openssl
 
-# Copy production node_modules + built output
+# Copy the full monorepo (workspace packages are symlinked in node_modules)
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/package-lock.json* ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/services/api/dist ./services/api/dist
+COPY --from=builder /app/services/api/package.json ./services/api/package.json
 COPY --from=builder /app/packages ./packages
-
-# Rebuild the native argon2 module against the runner image
-RUN npm rebuild argon2
 
 EXPOSE 3000
 WORKDIR /app/services/api
