@@ -73,8 +73,8 @@ export default function DepositsPage() {
         <div className="card">
           <h3>New deposit</h3>
           <p className="hint">
-            Submit a deposit to fund your test account. Deposits are confirmed by the platform
-            in a controlled Phase 1 test flow.
+            Submit a deposit to fund your account. Deposits are reviewed and confirmed
+            before being credited to your balance.
           </p>
           {error && <div className="alert alert-error" role="alert">{error}</div>}
           {success && <div className="alert alert-success" role="status">{success}</div>}
@@ -103,7 +103,7 @@ export default function DepositsPage() {
             <li>1. You initiate a deposit.</li>
             <li>2. Platform reviews and confirms it.</li>
             <li>3. Funds are credited to your balance.</li>
-            <li>4. Returns are simulated test credits.</li>
+            <li>4. Returns are credited to your balance.</li>
           </ul>
         </div>
       </div>

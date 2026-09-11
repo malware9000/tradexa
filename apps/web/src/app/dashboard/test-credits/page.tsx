@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { api, fmtMoney, fmtDate } from '@/lib/api';
 import { TableSkeleton } from '@/components/DashboardSkeleton';
 
-interface TestReturn {
+interface ReturnRecord {
   id: string;
   principalAmount: number;
   creditAmount: number;
@@ -16,14 +16,14 @@ interface TestReturn {
 }
 
 export default function TestCreditsPage() {
-  const [items, setItems] = useState<TestReturn[]>([]);
+  const [items, setItems] = useState<ReturnRecord[]>([]);
   const [error, setError] = useState('');
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    api<TestReturn[]>('/accounts/test-returns')
+    api<ReturnRecord[]>('/accounts/test-returns')
       .then(({ data }) => setItems(data))
-      .catch((e) => setError(e?.message || 'Failed to load test credits'))
+      .catch((e) => setError(e?.message || 'Failed to load returns'))
       .finally(() => setLoaded(true));
   }, []);
 
@@ -35,18 +35,16 @@ export default function TestCreditsPage() {
     <div>
       <div className="card">
         <div className="card-head">
-          <h3>Simulated test returns</h3>
-          <span className="badge badge-test">Phase 1 · Not real profit</span>
+          <h3>Return history</h3>
         </div>
         <p className="hint">
-          The test-return engine replays completed 24-hour periods and credits a simulated return
-          on your confirmed deposits. Total credited:{' '}
+          Returns are credited to your account on confirmed deposits. Total earned:{' '}
           <strong>{fmtMoney(total, items[0]?.currency || 'USD')}</strong>
         </p>
         {!loaded ? (
           <TableSkeleton rows={3} cols={6} />
         ) : items.length === 0 ? (
-          <p>No test credits yet. Confirmed deposits start earning simulated returns after a full 24-hour period.</p>
+          <p>No returns yet. Confirmed deposits start earning returns after the first period.</p>
         ) : (
           <div className="table-wrap">
             <table className="table">

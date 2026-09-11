@@ -16,13 +16,16 @@ interface Transaction {
 
 const typeLabel: Record<string, { label: string; tone: 'pos' | 'neg' | 'neutral' }> = {
   DEPOSIT: { label: 'Deposit', tone: 'pos' },
-  TEST_CREDIT: { label: 'Test credit', tone: 'pos' },
+  TEST_CREDIT: { label: 'Return', tone: 'pos' },
   WITHDRAWAL: { label: 'Withdrawal', tone: 'neg' },
   FEE: { label: 'Fee', tone: 'neg' },
   ADJUSTMENT: { label: 'Adjustment', tone: 'neutral' },
   REVERSAL: { label: 'Reversal', tone: 'neutral' },
   REFUND: { label: 'Refund', tone: 'pos' },
   TRADING_PNL: { label: 'Trading P&L', tone: 'neutral' },
+  REFERRAL_BONUS: { label: 'Referral bonus', tone: 'pos' },
+  REFERRAL_WELCOME_BONUS: { label: 'Welcome bonus', tone: 'pos' },
+  RANK_BONUS: { label: 'Rank bonus', tone: 'pos' },
 };
 
 export default function TransactionsPage() {

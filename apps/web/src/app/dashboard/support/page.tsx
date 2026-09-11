@@ -26,7 +26,7 @@ interface ListResponse {
 }
 
 const statuses = ['ALL', 'OPEN', 'IN_PROGRESS', 'WAITING_FOR_USER', 'RESOLVED', 'CLOSED'];
-const categories = ['Account', 'Deposits', 'Withdrawals', 'Payments', 'Security', 'Test Credits', 'Other'];
+const categories = ['Account', 'Deposits', 'Withdrawals', 'Payments', 'Security', 'Returns', 'Other'];
 
 export default function SupportTicketsPage() {
   const [rows, setRows] = useState<TicketRow[]>([]);
@@ -186,7 +186,7 @@ export default function SupportTicketsPage() {
                       </Link>
                       <div className="muted small">{t.id.slice(0, 8)}</div>
                     </td>
-                    <td><span className="badge badge-test">{t.category}</span></td>
+                    <td><span className="badge badge-status">{t.category}</span></td>
                     <td><span className={`badge badge-status st-${t.status.toLowerCase()}`}>{t.status.replace(/_/g, ' ')}</span></td>
                     <td className="muted">{t.messageCount || 1}</td>
                     <td className="muted">{fmtDate(t.updatedAt)}</td>

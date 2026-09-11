@@ -53,7 +53,7 @@ export default function DashboardHome() {
   const cur = summary.currency;
   const typeLabel: Record<string, string> = {
     DEPOSIT: 'Deposit',
-    TEST_CREDIT: 'Test credit',
+    TEST_CREDIT: 'Return',
     WITHDRAWAL: 'Withdrawal',
     FEE: 'Fee',
     ADJUSTMENT: 'Adjustment',
@@ -84,7 +84,7 @@ export default function DashboardHome() {
           <span className="stat-hint">{summary.rankBonusPercent || '0.5%'} deposit bonus</span>
         </div>
         <div className="stat-card">
-          <span className="stat-label">Test credits earned</span>
+          <span className="stat-label">Returns earned</span>
           <span className="stat-value">{fmtMoney(summary.totalTestCredits, cur)}</span>
           <span className="stat-hint">{summary.totalTestCreditsCount} period{summary.totalTestCreditsCount === 1 ? '' : 's'} credited</span>
         </div>
@@ -102,7 +102,6 @@ export default function DashboardHome() {
         <div className="card">
           <div className="card-head">
             <h3>Portfolio growth</h3>
-            <span className="badge badge-test">Simulated</span>
           </div>
           <PortfolioChart data={chart} />
         </div>
@@ -113,8 +112,8 @@ export default function DashboardHome() {
             <Link href="/dashboard/withdrawals" className="btn-secondary">Request withdrawal</Link>
           </div>
           <p className="hint">
-            Deposits are confirmed by the platform, then the test-return engine credits 2% per
-            24-hour period. Earnings are simulated test credits, not real profit.
+            Deposits are confirmed by the platform, then returns are credited
+            at the configured rate. Your balance updates in real-time.
           </p>
         </div>
       </div>
