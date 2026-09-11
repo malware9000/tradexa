@@ -15,7 +15,7 @@ interface ReturnRecord {
   currency: string;
 }
 
-export default function TestCreditsPage() {
+export default function ReturnsPage() {
   const [items, setItems] = useState<ReturnRecord[]>([]);
   const [error, setError] = useState('');
   const [loaded, setLoaded] = useState(false);

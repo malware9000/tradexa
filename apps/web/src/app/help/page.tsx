@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Help Center',
-  description: 'Help articles for Tradexa accounts, payments, withdrawals, security, and the test environment.',
+  description: 'Help articles for Tradexa accounts, payments, withdrawals, security, and returns.',
 };
 
 const sections = [
@@ -37,11 +37,11 @@ const sections = [
     items: ['Password', 'Two-factor authentication', 'Suspicious activity'],
   },
   {
-    title: 'Test Environment',
+    title: 'Returns',
     items: [
-      'What simulated returns mean',
-      'How the test credit calculation works',
-      'Test account limitations',
+      'How returns are credited',
+      'Return calculation periods',
+      'Account limitations',
     ],
   },
 ];
@@ -61,11 +61,12 @@ export default function HelpPage() {
         </div>
       ))}
       <div className="card">
-        <h3>Test Environment</h3>
+        <h3>Returns</h3>
         <p>
-          Returns shown during the testing phase are simulated test credits
-          applied at the configured rate. They are not representations of
-          actual trading performance and are not guaranteed returns.
+          Returns are credited for each completed period based on confirmed
+          deposits, applied at the configured rate. Every entry is recorded in
+          the ledger. Trading and investing involve risk and returns are not
+          guaranteed.
         </p>
       </div>
     </section>

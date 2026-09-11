@@ -19,7 +19,7 @@ export default function HowItWorks() {
         </p>
         <h3>3. Track your portfolio</h3>
         <p>
-          Watch your balance and the Phase 1 simulated test credits accumulate.
+          Watch your balance and returns accumulate, period by period.
         </p>
         <h3>4. Withdraw when ready</h3>
         <p>

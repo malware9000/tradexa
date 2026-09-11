@@ -15,12 +15,12 @@ export default function Risk() {
           Trading and investing involve risk, including the possible loss of
           principal. Past performance is not indicative of future results.
         </p>
-        <h3>Phase 1 Test Environment</h3>
+        <h3>Returns Are Not Guaranteed</h3>
         <p>
-          Any returns shown during the Phase 1 test environment are simulated
-          test credits. They are not actual trading profits and are not
-          guaranteed returns. You should not rely on them as a representation
-          of future performance.
+          Any returns credited on confirmed deposits are based on the configured
+          platform rate and are not actual trading profits. Past performance is
+          not a representation of future results, and you should not rely on
+          returns as guaranteed income.
         </p>
         <h3>Seek Advice</h3>
         <p>

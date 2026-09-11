@@ -8,7 +8,7 @@ const titles: Record<string, string> = {
   '/dashboard': 'Overview',
   '/dashboard/deposits': 'Deposits',
   '/dashboard/withdrawals': 'Withdrawals',
-  '/dashboard/test-credits': 'Returns',
+  '/dashboard/returns': 'Returns',
   '/dashboard/referrals': 'Referrals',
   '/dashboard/ranks': 'Ranks',
   '/dashboard/transactions': 'Transactions',

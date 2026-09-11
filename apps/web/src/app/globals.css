@@ -1218,11 +1218,6 @@ main:has(.dash-shell) {
   font-weight: 600;
 }
 
-.badge-test {
-  background: rgba(250, 204, 21, 0.15);
-  color: #facc15;
-}
-
 .badge-live {
   background: rgba(74, 222, 128, 0.15);
   color: #4ade80;

@@ -16,12 +16,12 @@ export default function Terms() {
           service and all applicable laws and regulations. If you do not agree,
           you may not use the platform.
         </p>
-        <h3>Test Environment</h3>
+        <h3>Returns</h3>
         <p>
-          During Phase 1, returns shown on the platform are simulated test
-          credits applied at a configurable rate. They are not real trading
-          profits, are not guaranteed investment returns, and do not represent
-          the performance of any trading strategy.
+          Returns are credited for each completed 24-hour period based on
+          confirmed deposits, applied at the configured rate. Returns are not
+          guaranteed investment profits, do not represent the performance of
+          any trading strategy, and may vary with platform configuration.
         </p>
         <h3>Account Responsibilities</h3>
         <p>

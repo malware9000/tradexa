@@ -5,7 +5,7 @@ import GridBackground from '@/components/GridBackground';
 export const metadata: Metadata = {
   title: 'Home',
   description:
-    'Tradexa is a transparent investment and trading platform. See what the Phase 1 test environment offers.',
+    'Tradexa is a transparent investment and trading platform with real-time portfolio tracking and daily returns.',
 };
 
 export default function Home() {
@@ -16,15 +16,15 @@ export default function Home() {
         <div className="hero-content">
           <div className="hero-badge">
             <span className="badge-dot" />
-            Phase 1 Test Environment
+            Transparent &amp; Accountable
           </div>
           <h1 className="hero-title">
             Trade with
             <span className="gradient-text"> transparency</span>
           </h1>
           <p className="hero-subtitle">
-            A transparent investment and trading platform. Watch simulated returns
-            accrue in real-time with our Phase 1 test environment.
+            A transparent investment and trading platform. Watch returns
+            accrue in real-time, fully tracked against a single source of truth.
           </p>
           <div className="hero-actions">
             <Link href="/register" className="btn-hero-primary">
@@ -49,8 +49,8 @@ export default function Home() {
             </div>
             <div className="hero-stat-divider" />
             <div className="hero-stat">
-              <span className="hero-stat-value">Phase 1</span>
-              <span className="hero-stat-label">Test Mode</span>
+              <span className="hero-stat-value">24h</span>
+              <span className="hero-stat-label">Return Rate</span>
             </div>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default function Home() {
               </svg>
             </div>
             <h3>Real-time Tracking</h3>
-            <p>Watch your portfolio evolve with live updates and simulated test credit accrual.</p>
+            <p>Watch your portfolio evolve with live updates and daily return accrual.</p>
           </div>
           <div className="feature-card reactive glare tilt">
             <div className="feature-icon">
@@ -97,11 +97,11 @@ export default function Home() {
             </svg>
           </div>
           <div>
-            <h3>Test Account Disclosure</h3>
+            <h3>Transparency Disclosure</h3>
             <p>
-              During Phase 1, all returns shown are simulated test credits applied
-              at the configured test rate. They are NOT representations of actual
-              trading performance and are NOT guaranteed investment returns.
+              Returns are credited for each completed 24-hour period based on
+              confirmed deposits, and every entry is recorded in the ledger.
+              Trading and investing involve risk, and returns are not guaranteed.
             </p>
           </div>
         </div>

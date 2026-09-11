@@ -2,21 +2,21 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'FAQ',
-  description: 'Frequently asked questions about Tradexa and the Phase 1 test environment.',
+  description: 'Frequently asked questions about Tradexa, returns, deposits, and withdrawals.',
 };
 
 const faqs = [
   {
-    q: 'What is the difference between the test environment and real trading?',
-    a: 'During Phase 1, returns shown on the platform are simulated test credits applied at a configured test rate. They are not actual trading profits and are not guaranteed returns.',
+    q: 'How do returns work?',
+    a: 'A configurable rate is applied per completed 24-hour period, based on the confirmed deposit principal. Each eligible period creates one ledger entry, and a period is never credited twice.',
   },
   {
-    q: 'How does the test credit calculation work?',
-    a: 'A configurable rate is applied per completed 24-hour period, based on the deposited principal. Each eligible period creates one ledger entry, and a period is never credited twice.',
+    q: 'Are returns guaranteed?',
+    a: 'Returns are credited for completed periods on confirmed deposits, but trading and investing involve risk and returns are not guaranteed investment profits.',
   },
   {
     q: 'Do the website and mobile app show the same data?',
-    a: 'Yes. The website and mobile app share a single backend API and database, so balances, deposits, transactions, and test credits are identical everywhere.',
+    a: 'Yes. The website and mobile app share a single backend API and database, so balances, deposits, transactions, and returns are identical everywhere.',
   },
   {
     q: 'Is my password stored securely?',
