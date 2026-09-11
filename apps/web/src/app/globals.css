@@ -1061,6 +1061,19 @@ main:has(.dash-shell) {
   font-size: 0.8rem;
 }
 
+.stat-crypto {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+  opacity: 0.85;
+  transition: opacity 0.3s ease;
+}
+
+.stat-card:hover .stat-crypto {
+  opacity: 1;
+}
+
 /* ===== Dashboard grid / quick actions ===== */
 .dash-grid {
   display: grid;

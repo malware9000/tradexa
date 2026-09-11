@@ -33,6 +33,7 @@ interface Summary {
 export default function DashboardHome() {
   const [summary, setSummary] = useState<Summary | null>(null);
   const [chart, setChart] = useState<Array<{ date: string; balance: number | null }>>([]);
+  const [prices, setPrices] = useState<Record<string, number>>({});
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -45,6 +46,22 @@ export default function DashboardHome() {
         setChart(c.data);
       })
       .catch((e) => setError(e?.message || 'Failed to load dashboard'));
+  }, []);
+
+  useEffect(() => {
+    const pairs = JSON.stringify(['BTCUSDT', 'ETHUSDT', 'ETCUSDT']);
+    const fetchPrices = () =>
+      fetch(`https://api.binance.com/api/v3/ticker/24hr?symbols=${encodeURIComponent(pairs)}`)
+        .then((r) => r.json())
+        .then((data: Array<{ symbol: string; lastPrice: string }>) => {
+          const map: Record<string, number> = {};
+          for (const d of data) map[d.symbol] = parseFloat(d.lastPrice);
+          setPrices(map);
+        })
+        .catch(() => {});
+    fetchPrices();
+    const iv = setInterval(fetchPrices, 30000);
+    return () => clearInterval(iv);
   }, []);
 
   if (error) return <div className="alert alert-error" role="alert">{error}</div>;
@@ -65,17 +82,36 @@ export default function DashboardHome() {
     RANK_BONUS: 'Rank bonus',
   };
 
+  const btcPrice = prices.BTCUSDT || 0;
+  const ethPrice = prices.ETHUSDT || 0;
+  const etcPrice = prices.ETCUSDT || 0;
+
+  function cryptoEquiv(usdAmount: number) {
+    if (!btcPrice) return null;
+    const parts = [];
+    if (btcPrice) parts.push(`${(usdAmount / btcPrice).toFixed(6)} BTC`);
+    if (ethPrice) parts.push(`${(usdAmount / ethPrice).toFixed(4)} ETH`);
+    if (etcPrice) parts.push(`${(usdAmount / etcPrice).toFixed(2)} ETC`);
+    return parts.length ? `≈ ${parts.join('  ·  ')}` : null;
+  }
+
   return (
     <div>
       <div className="stat-grid">
         <div className="stat-card accent">
           <span className="stat-label">Available balance</span>
           <span className="stat-value">{fmtMoney(summary.balance, cur)}</span>
+          {cryptoEquiv(summary.balance) && (
+            <span className="stat-crypto">{cryptoEquiv(summary.balance)}</span>
+          )}
           <span className="stat-hint">Reconstructed from ledger</span>
         </div>
         <div className="stat-card">
           <span className="stat-label">Total deposits</span>
           <span className="stat-value">{fmtMoney(summary.totalDeposits, cur)}</span>
+          {cryptoEquiv(summary.totalDeposits) && (
+            <span className="stat-crypto">{cryptoEquiv(summary.totalDeposits)}</span>
+          )}
           <span className="stat-hint">{summary.totalDepositsCount} deposit{summary.totalDepositsCount === 1 ? '' : 's'} confirmed</span>
         </div>
         <div className="stat-card">
@@ -86,6 +122,9 @@ export default function DashboardHome() {
         <div className="stat-card">
           <span className="stat-label">Returns earned</span>
           <span className="stat-value">{fmtMoney(summary.totalTestCredits, cur)}</span>
+          {cryptoEquiv(summary.totalTestCredits) && (
+            <span className="stat-crypto">{cryptoEquiv(summary.totalTestCredits)}</span>
+          )}
           <span className="stat-hint">{summary.totalTestCreditsCount} period{summary.totalTestCreditsCount === 1 ? '' : 's'} credited</span>
         </div>
       </div>
