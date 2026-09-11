@@ -8,6 +8,20 @@
   --danger: #f87171;
   --success: #4ade80;
   --shimmer: rgba(255, 255, 255, 0.06);
+  color-scheme: dark;
+}
+
+[data-theme='light'] {
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --border: #e2e8f0;
+  --text: #0f172a;
+  --muted: #64748b;
+  --accent: #3b82f6;
+  --danger: #ef4444;
+  --success: #16a34a;
+  --shimmer: rgba(0, 0, 0, 0.04);
+  color-scheme: light;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -2295,4 +2309,44 @@ button:not(.btn-link) {
   font-size: 0.8rem;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
+}
+
+/* ===== Theme Toggle ===== */
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.7rem;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--panel);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.theme-toggle-label {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .theme-toggle-label {
+    display: inline;
+  }
+}
+
+[data-theme='light'] .trading-chart-spinner {
+  border-color: rgba(15, 23, 42, 0.15);
+  border-top-color: var(--accent);
+}
+
+[data-theme='light'] .trading-chart-loading {
+  color: var(--muted);
 }

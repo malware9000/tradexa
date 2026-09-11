@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import SiteHeader from '@/components/SiteHeader';
 import SiteFooter from '@/components/SiteFooter';
+import ThemeProvider from '@/components/ThemeProvider';
 import './globals.css';
 
 export const metadata: Metadata = {
@@ -10,7 +11,7 @@ export const metadata: Metadata = {
     template: '%s | Tradexa',
   },
   description:
-    'Tradexa is a transparent investment and trading platform. Phase 1 runs a controlled test environment with simulated returns clearly labelled as test credits.',
+    'Tradexa is a transparent investment and trading platform.',
   icons: {
     icon: '/icon.svg',
   },
@@ -22,11 +23,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <SiteHeader />
-        <main>{children}</main>
-        <SiteFooter />
+        <ThemeProvider>
+          <SiteHeader />
+          <main>{children}</main>
+          <SiteFooter />
+        </ThemeProvider>
       </body>
     </html>
   );

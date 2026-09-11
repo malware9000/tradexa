@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { api } from '@/lib/api';
+import ThemeToggle from './ThemeToggle';
 
 export default function DashboardTopbar({ title }: { title: string }) {
   const [unread, setUnread] = useState(0);
@@ -20,6 +21,7 @@ export default function DashboardTopbar({ title }: { title: string }) {
     <div className="dash-topbar">
       <h1>{title}</h1>
       <div className="dash-topbar-actions">
+        <ThemeToggle />
         {unread > 0 && (
           <a href="/dashboard/profile" className="bell">
             <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden>

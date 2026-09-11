@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import MobileNav from '@/components/MobileNav';
+import ThemeToggle from './ThemeToggle';
 
 export default function SiteHeader() {
   const pathname = usePathname();
@@ -62,6 +63,9 @@ export default function SiteHeader() {
           </>
         )}
       </nav>
+      <div className="site-header-actions">
+        <ThemeToggle />
+      </div>
       <MobileNav />
     </header>
   );
