@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { api, fmtMoney, fmtDate } from '@/lib/api';
 import PortfolioChart from '@/components/PortfolioChart';
+import LiveTradingChart from '@/components/LiveTradingChart';
 import { DashboardSkeleton } from '@/components/DashboardSkeleton';
 
 interface Summary {
@@ -16,7 +17,7 @@ interface Summary {
   pendingWithdrawal: number;
   currency: string;
   periodHours: number;
-  recentActivity: Array<{
+  recentActivity?: Array<{
     id: string;
     type: string;
     amount: number;
@@ -24,6 +25,9 @@ interface Summary {
     status: string;
     createdAt: string;
   }>;
+  rank?: string;
+  rankLabel?: string;
+  rankBonusPercent?: string;
 }
 
 export default function DashboardHome() {
@@ -56,6 +60,9 @@ export default function DashboardHome() {
     REVERSAL: 'Reversal',
     REFUND: 'Refund',
     TRADING_PNL: 'Trading P&L',
+    REFERRAL_BONUS: 'Referral bonus',
+    REFERRAL_WELCOME_BONUS: 'Welcome bonus',
+    RANK_BONUS: 'Rank bonus',
   };
 
   return (
@@ -72,17 +79,23 @@ export default function DashboardHome() {
           <span className="stat-hint">{summary.totalDepositsCount} deposit{summary.totalDepositsCount === 1 ? '' : 's'} confirmed</span>
         </div>
         <div className="stat-card">
+          <span className="stat-label">Current rank</span>
+          <span className="stat-value stat-green">{summary.rankLabel || 'Bronze'}</span>
+          <span className="stat-hint">{summary.rankBonusPercent || '0.5%'} deposit bonus</span>
+        </div>
+        <div className="stat-card">
           <span className="stat-label">Test credits earned</span>
           <span className="stat-value">{fmtMoney(summary.totalTestCredits, cur)}</span>
           <span className="stat-hint">{summary.totalTestCreditsCount} period{summary.totalTestCreditsCount === 1 ? '' : 's'} credited</span>
         </div>
-        <div className="stat-card">
-          <span className="stat-label">Test return rate</span>
-          <span className="stat-value stat-green">
-            {(summary.depositReturnRate * 100).toFixed(2)}%
-          </span>
-          <span className="stat-hint">per {summary.periodHours}h period, simulated</span>
+      </div>
+
+      <div className="card">
+        <div className="card-head">
+          <h3>Live market</h3>
+          <span className="badge badge-live">Live</span>
         </div>
+        <LiveTradingChart />
       </div>
 
       <div className="dash-grid">
@@ -111,7 +124,7 @@ export default function DashboardHome() {
           <h3>Recent activity</h3>
           <Link className="btn-link" href="/dashboard/transactions">View all</Link>
         </div>
-        {summary.recentActivity.length === 0 ? (
+        {(summary.recentActivity ?? []).length === 0 ? (
           <p className="hint">No activity yet. Make your first deposit to get started.</p>
         ) : (
           <div className="table-wrap">
@@ -125,7 +138,7 @@ export default function DashboardHome() {
                 </tr>
               </thead>
               <tbody>
-                {summary.recentActivity.map((t) => (
+                {(summary.recentActivity ?? []).map((t) => (
                   <tr key={t.id}>
                     <td>{typeLabel[t.type] || t.type}</td>
                     <td className={t.amount >= 0 ? 'pos' : 'neg'}>{fmtMoney(t.amount, t.currency)}</td>
